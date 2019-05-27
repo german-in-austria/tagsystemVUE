@@ -38,6 +38,12 @@ export default {
     }
   },
   watch: {
+    tags: {
+      handler: function (nVal) {
+        this.$emit('changed')
+      },
+      deep: true
+    }
   },
   methods: {
   },
