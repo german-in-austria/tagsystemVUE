@@ -8,7 +8,7 @@
         </div>
       </template>
       <template v-else-if="mode === 'edit' || mode === 'view'">
-        <TagEditor :tagsData="tagsData" :tags="tags" :mode="mode" />
+        <TagEditor :tagsData="tagsData" :tags="tags" :mode="mode" @changed="changed" />
       </template>
       <template v-else>
         Tagsystem {{ mode }}
@@ -46,6 +46,9 @@ export default {
     }
   },
   methods: {
+    changed () {
+      this.$emit('changed')
+    }
   },
   computed: {
   },

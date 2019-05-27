@@ -108,6 +108,7 @@ export default {
           }
         }
       }
+      this.$emit('changed')
     },
     familyError (aTag) {
       return !this.tagsData.data.tagsCache.tags[aTag.tag].c && (aTag.tags && aTag.tags.length > 0)
