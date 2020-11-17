@@ -68,7 +68,7 @@ const localFunctions = {
           getPresets: 1
         })
         .then((response) => {
-          console.log('Tagsystem - getPresets', response.data, this)
+          console.log('Tagsystem - getPresets', JSON.parse(JSON.stringify(response.data)), this)
           this.presetsCache = {
             presetsList: response.data['presets']
           }

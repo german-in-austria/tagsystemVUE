@@ -19,10 +19,10 @@
           <div class="iblock prel" v-if="getValOfSubProp(tagsData.data.baseCache.tagebenenObj, ebenenTags.e + '.presets.length') > 0">
             <button class="ant-ctag" :disabled="tagsData.data.loadingPresets" @click="togglePreset(etKey)"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
             <div class="tags seltags open" v-if="!tagsData.data.loadingPresets && showPresets[etKey]">
-              <button class="pretagsbtn" :title="(pIndex + 1) + '. ' + preset.tokenText"
+              <button class="pretagsbtn" :title="(pIndex + 1) + '. ' + preset.b  + ' - ' + preset.tokenText"
                 v-for="(preset, pIndex) in getFilteredPresets(ebenenTags)"
                 :key="'psbtn' + pIndex"
-                @click="addPreset(ebenenTags, preset)" v-on:blur="selPresetBlur">{{ (pIndex + 1) + '. ' + preset.tokenText }}</button>
+                @click="addPreset(ebenenTags, preset)" v-on:blur="selPresetBlur">{{ (pIndex + 1) }}. <b>{{ preset.b }}</b> - {{ preset.tokenText }}</button>
             </div>
           </div>
         </div>
