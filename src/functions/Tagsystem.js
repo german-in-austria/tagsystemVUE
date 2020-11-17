@@ -1,7 +1,7 @@
 import prototypeTagsystemBase from './prototypes/TagsystemBase'
 
 const localFunctions = {
-  TagsystemBase (http) {
+  TagsystemBase: function(http) {
     this.ready = false                  // Ist das Objekt bereit?
     this.loading = false                // Wird gerade geladen/gespeichert?
     this.http = http                    // Objekt für HTTP-Anfragen
