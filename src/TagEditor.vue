@@ -2,8 +2,8 @@
   <div class="tageditor form-horizontal">
     <div class="form-group tag-line" v-for="(ebenenTags, etKey) in tags" :key="'teet' + etKey">
       <label class="col-sm-3 control-label">
-        <select class="tagebene w100" v-model="ebenenTags.e" :disabled="!edit">
-          <option :value="0">Ebene auswählen (Löschen)</option>
+        <select class="tagebene w100" v-model="ebenenTags.e" :disabled="!edit && !select">
+          <option :value="0">Ebene auswählen{{ !select ? ' (Löschen)' : ''}}</option>
           <option v-for="tagebene in tagsData.data.baseCache.tagebenenList" :key="'teet' + etKey + 'tesel' + tagebene.pk"
                   :value="tagebene.pk"
                   :disabled="(ebenenTags.e !== tagebene.pk) && ebeneVorhanden(tagebene.pk)">
@@ -14,9 +14,9 @@
       <div class="col-sm-9">
         <div class="form-control-static reihung-tags" v-if="ebenenTags.e > 0">
           <div class="r-tag-familie r-tag-familie-pchilds">
-            <TagEditorTags :ebenenPK="ebenenTags.e" :generation="0" :tags="ebenenTags.tags" :parents="[]" :edit="edit" :tagsData="tagsData" @changed="changed" />
+            <TagEditorTags :ebenenPK="ebenenTags.e" :generation="0" :tags="ebenenTags.tags" :parents="[]" :edit="edit || select" :tagsData="tagsData" @changed="changed" />
           </div>
-          <div class="iblock prel" v-if="getValOfSubProp(tagsData.data.baseCache.tagebenenObj, ebenenTags.e + '.presets.length') > 0">
+          <div class="iblock prel" v-if="!select && getValOfSubProp(tagsData.data.baseCache.tagebenenObj, ebenenTags.e + '.presets.length') > 0">
             <button class="ant-ctag" :disabled="tagsData.data.loadingPresets" @click="togglePreset(etKey)"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
             <div class="tags seltags open" v-if="!tagsData.data.loadingPresets && showPresets[etKey]">
               <button class="pretagsbtn" :title="(pIndex + 1) + '. ' + preset.b  + ' - ' + preset.tokenText"
@@ -121,6 +121,9 @@ export default {
   computed: {
     edit () {
       return this.mode === 'edit'
+    },
+    select () {
+      return this.mode === 'select'
     }
   },
   components: {

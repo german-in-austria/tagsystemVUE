@@ -7,7 +7,7 @@
           <span class="tagebene-tags">{{ tagsData.data.tagsText(tagebene.tags) }}</span>
         </div>
       </template>
-      <template v-else-if="mode === 'edit' || mode === 'view'">
+      <template v-else-if="mode === 'edit' || mode === 'select' || mode === 'view'">
         <TagEditor :tagsData="tagsData" :tags="tags" :mode="mode" @changed="changed" />
       </template>
       <template v-else>
